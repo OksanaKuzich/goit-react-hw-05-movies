@@ -2,7 +2,6 @@ import { fetchTrendingMovies } from 'service/api';
 import { useState, useEffect, useRef } from 'react';
 
 export const TrendingList = () => {
-  const [page, setPage] = useState(1);
   const [gallery, setGallery] = useState([]);
   const isFirstRender = useRef(true);
 
@@ -12,7 +11,7 @@ export const TrendingList = () => {
       return;
     }
 
-    fetchTrendingMovies(page)
+    fetchTrendingMovies(1)
       .then(resp => {
         setGallery(prevState => {
           return [...prevState, ...resp.results];
