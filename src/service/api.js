@@ -8,7 +8,7 @@ export const fetchTrendingMovies = async (page) => {
       const responce = await axios('/trending/movie/day', {
         params: {
           api_key: API_KEY,
-          page,
+          page: 1,
         },
       });
       return responce.data;
@@ -17,11 +17,11 @@ export const fetchTrendingMovies = async (page) => {
     }
 };
 
-export const searchMovies = page => {
+export const searchMovies = (name) => {
   return axios('/search/search-movies', {
     params: {
       api_key: API_KEY,
-      page,
+      page: 1
     },
   });
 };
