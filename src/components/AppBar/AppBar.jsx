@@ -7,12 +7,16 @@ export const AppBar = () => {
   ];
 
   return (
-    <>
-      {navItems.map(({ href, text }) => (
-        <Link to={href} key={href}>
-          {text}
-        </Link>
-      ))}
-    </>
+    <nav>
+      <ul>
+        {navItems.map(({ href, text }) => (
+          <li key={href}>
+            <Link to={href} key={href}>
+              {text}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };

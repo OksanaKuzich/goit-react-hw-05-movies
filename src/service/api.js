@@ -2,53 +2,52 @@ import axios from 'axios';
 
 axios.defaults.baseURL = `https://api.themoviedb.org/3/`;
 const API_KEY = '0214e4f6556edfc65f2eadfc23b43510';
-
-export const fetchTrendingMovies = async (page) => {    
-    try {
-      const responce = await axios('/trending/movie/day', {
-        params: {
-          api_key: API_KEY,
-          page: 1,
-        },
-      });
-      return responce.data;
-    } catch (error) {
-      console.log(error.message);
-    }
+const params = {
+  api_key: API_KEY,
+  page: 1,
 };
 
-export const searchMovies = (name) => {
-  return axios('/search/search-movies', {
-    params: {
-      api_key: API_KEY,
-      page: 1
-    },
-  });
+export const fetchTrendingMovies = async () => {
+  try {
+    const responce = await axios('/trending/movie/day', { params });
+    return responce.data.results;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export const fetchMoviesDetails = page => {
-  return axios('/movies/get-movie-details', {
-    params: {
-      api_key: API_KEY,
-      page,
-    },
-  });
+export const searchMovies = async name => {
+  try {
+    const responce = await axios(`/search/movie?query=${name}`, { params });
+    return responce.data.results;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export const fetchMoviesActors = page => {
-  return axios('/movies/get-movie-credits', {
-    params: {
-      api_key: API_KEY,
-      page,
-    },
-  });
+export const fetchMoviesDetails = async (id) => {
+  try {
+    const responce = await axios(`/movie/${id}`, { params });
+    return responce.data;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export const fetchReviewsMovie = page => {
-  return axios('/movies/get-movie-reviews ', {
-    params: {
-      api_key: API_KEY,
-      page,
-    },
-  });
+export const fetchMoviesActors = async () => {
+  try {
+    const responce = await axios('/movies/get-movie-credits', { params });
+    return responce.data.results;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const fetchReviewsMovie = async () => {
+  try {
+    const responce = await axios('/movies/get-movie-reviews', { params });
+    return responce.data.results;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
