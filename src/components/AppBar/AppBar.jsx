@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavList, Header, NavItem } from './AppBar.styles';
 
 export const AppBar = () => {
   const navItems = [
@@ -7,16 +7,18 @@ export const AppBar = () => {
   ];
 
   return (
-    <nav>
-      <ul>
-        {navItems.map(({ href, text }) => (
-          <li key={href}>
-            <Link to={href} key={href}>
-              {text}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <Header>
+      <nav>
+        <NavList>
+          {navItems.map(({ href, text }) => (
+            <NavItem key={href}>
+              <Link to={href} key={href}>
+                {text}
+              </Link>
+            </NavItem>
+          ))}
+        </NavList>
+      </nav>
+    </Header>
   );
 };

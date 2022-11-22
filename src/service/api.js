@@ -25,7 +25,7 @@ export const searchMovies = async name => {
   }
 };
 
-export const fetchMoviesDetails = async (id) => {
+export const fetchMovieDetails = async (id) => {
   try {
     const responce = await axios(`/movie/${id}`, { params });
     return responce.data;
@@ -34,18 +34,18 @@ export const fetchMoviesDetails = async (id) => {
   }
 };
 
-export const fetchMoviesActors = async () => {
+export const fetchMovieCast = async (id) => {
   try {
-    const responce = await axios('/movies/get-movie-credits', { params });
-    return responce.data.results;
+    const responce = await axios(`/movie/${id}/credits`, { params });
+    return responce.data.cast;
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const fetchReviewsMovie = async () => {
+export const fetchMovieReviews = async (id) => {
   try {
-    const responce = await axios('/movies/get-movie-reviews', { params });
+    const responce = await axios(`/movie/${id}/reviews`, { params });
     return responce.data.results;
   } catch (error) {
     console.log(error.message);

@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { searchMovies } from '../../service/api';
-import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { TrendingList } from 'components/TrendingList/TrendingList';
+import { Input, Form, ButtonSearch } from './Movies.styles';
 
 export const Movies = () => {
   const [gallery, setGallery] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('name');
-  const location = useLocation();
+  const pathLocation = '';
 
   const onFormSubmit = e => {
     e.preventDefault();
@@ -29,12 +29,15 @@ export const Movies = () => {
 
   return (
     <div>
-      <form onSubmit={onFormSubmit}>
-        <input name="name" type="text" />
-        <button>Search</button>
-      </form>
+      <Form onSubmit={onFormSubmit}>
+        <Input name="name" type="text" />
+        <ButtonSearch>Search</ButtonSearch>
+      </Form>
       {gallery.length !== 0 && (
-        <TrendingList gallery={gallery} location={location} />
+        <TrendingList
+          gallery={gallery}
+          pathLocation={pathLocation}
+        />
       )}
       <Outlet />
     </div>
