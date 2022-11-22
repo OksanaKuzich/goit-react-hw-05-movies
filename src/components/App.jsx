@@ -1,38 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from './Layout/Layout';
-import { Movies } from '../pages/Movies/Movies';
-import { Home } from '../pages/Home/Home';
-import { MovieDetails } from './MovieDetails/MovieDetails';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
 import { GlobalStyle } from './utiles/GlobalStyles';
+import { lazy, Suspense } from 'react';
+
+const MyCompHome = lazy(() => import('../pages/Home/Home'));
+const MyCompCast = lazy(() => import('./Cast/Cast'));
+const MyCompLayout = lazy(() => import('./Layout/Layout'));
+const MyCompDetails = lazy(() => import('./MovieDetails/MovieDetails'));
+const MyCompReviews = lazy(() => import('./Reviews/Reviews'));
+const MyCompMovies = lazy(() => import('../pages/Movies/Movies'));
 
 export const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies/:id" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<MyCompLayout />}>
+            <Route index element={<MyCompHome />} />
+            <Route path="movies" element={<MyCompMovies />} />
+            <Route path="movies/:id" element={<MyCompDetails />}>
+              <Route path="cast" element={<MyCompCast />} />
+              <Route path="reviews" element={<MyCompReviews />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </Suspense>
       <GlobalStyle />
     </>
   );
 };
-
-// '/' - +компонент Home, домашняя страница со списком популярных кинофильмов.
-// '/movies' - +компонент Movies, страница поиска фильмов по ключевому слову.
-// '/movies/:movieId' - компонент MovieDetails, страница с детальной информацией о кинофильме.
-// /movies/:movieId/cast - компонент Cast, информация о актерском составе. Рендерится на странице MovieDetails.
-// /movies/:movieId/reviews - компонент Reviews, информация об обзорах. Рендерится на странице MovieDetails.
-
-// - / Loyaut (Home)
-// - /movies
-//   - :movieId
-//     - /cast
-//     - /reviews

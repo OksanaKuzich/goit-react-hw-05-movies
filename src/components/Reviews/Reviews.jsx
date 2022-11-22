@@ -4,7 +4,7 @@ import { parseISO, format } from 'date-fns';
 import { ReviewsList, ReviewsItem } from './Reviews.styles';
 import { NoInfo } from 'components/Cast/Cast.styles';
 
-export const Reviews = () => {
+const Reviews = () => {
   const reviews = useFetchById(fetchMovieReviews);
 
   const fixFormatDate = str => {
@@ -30,3 +30,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

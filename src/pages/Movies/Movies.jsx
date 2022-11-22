@@ -4,7 +4,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { TrendingList } from 'components/TrendingList/TrendingList';
 import { Input, Form, ButtonSearch } from './Movies.styles';
 
-export const Movies = () => {
+const Movies = () => {
   const [gallery, setGallery] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('name');
@@ -34,12 +34,11 @@ export const Movies = () => {
         <ButtonSearch>Search</ButtonSearch>
       </Form>
       {gallery.length !== 0 && (
-        <TrendingList
-          gallery={gallery}
-          pathLocation={pathLocation}
-        />
+        <TrendingList gallery={gallery} pathLocation={pathLocation} />
       )}
       <Outlet />
     </div>
   );
 };
+
+export default Movies;

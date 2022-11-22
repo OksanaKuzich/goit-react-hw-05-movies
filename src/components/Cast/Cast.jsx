@@ -3,7 +3,7 @@ import { fetchMovieCast } from 'service/api';
 import { Img, CastList, NoInfo } from './Cast.styles';
 import nophoto from '../../data/nophoto.jpg';
 
-export const Cast = () => {
+const Cast = () => {
   const cast = useFetchById(fetchMovieCast);
   const URLimg = 'https://image.tmdb.org/t/p/w500';
 
@@ -27,3 +27,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

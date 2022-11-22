@@ -49,3 +49,4 @@ TrendingList.propTypes = {
   ).isRequired,
   pathLocation: PropTypes.string.isRequired,
 };
+

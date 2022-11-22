@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react';
 import { TrendingList } from 'components/TrendingList/TrendingList';
 import { Section } from './Home.styles';
 
-export const Home = () => {
+const Home = () => {
   const [gallery, setGallery] = useState([]);
   const pathLocation = '/movies/';
 
   useEffect(() => {
-
     fetchTrendingMovies()
       .then(setGallery)
       .catch(error => console.log(error.message));
@@ -23,3 +22,5 @@ export const Home = () => {
     </Section>
   );
 };
+
+export default Home;

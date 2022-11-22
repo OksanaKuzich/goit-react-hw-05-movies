@@ -11,7 +11,7 @@ import {
   Link,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const details = useFetchById(fetchMovieDetails);
   const navigate = useNavigate();
   const location = useLocation();
@@ -66,3 +66,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;
