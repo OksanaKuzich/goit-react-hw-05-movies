@@ -33,8 +33,10 @@ const Movies = () => {
         <Input name="name" type="text" />
         <ButtonSearch>Search</ButtonSearch>
       </Form>
-      {gallery.length !== 0 && (
+      {gallery || gallery.length !== 0 ? (
         <TrendingList gallery={gallery} pathLocation={pathLocation} />
+      ) : (
+        <div>Not found</div>
       )}
       <Outlet />
     </div>

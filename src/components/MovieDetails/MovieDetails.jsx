@@ -16,6 +16,7 @@ const MovieDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const URLimg = 'https://image.tmdb.org/t/p/w500';
+  const backLink = location.state?.from ?? '/';
 
   return (
     <>
@@ -23,7 +24,7 @@ const MovieDetails = () => {
         <ButtonBack
           type="button"
           onClick={() => {
-            navigate(location?.state?.from ?? '/');
+            navigate(backLink);
           }}
         >
           Go back
