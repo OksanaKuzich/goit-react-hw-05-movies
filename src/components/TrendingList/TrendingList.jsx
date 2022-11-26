@@ -7,7 +7,6 @@ import {
   MoviesWrapper,
   Img,
   TitleMovies,
-  Loading,
 } from './TrendingList.styles';
 
 export const TrendingList = ({ gallery, pathLocation }) => {
@@ -16,10 +15,10 @@ export const TrendingList = ({ gallery, pathLocation }) => {
 
   return (
     <>
-      {gallery && gallery.length !== 0 ? (
-        <MoviesWrapper>
-          <MoviesList>
-            {gallery.map(({ id, title, release_date, poster_path }) => {
+      <MoviesWrapper>
+        <MoviesList>
+          {gallery && (
+            gallery.map(({ id, title, release_date, poster_path }) => {
               return (
                 <MoviesItem key={id}>
                   <MoviesLink
@@ -33,12 +32,10 @@ export const TrendingList = ({ gallery, pathLocation }) => {
                   </MoviesLink>
                 </MoviesItem>
               );
-            })}
-          </MoviesList>
-        </MoviesWrapper>
-      ) : (
-        <Loading>Loading...</Loading>
-      )}
+            })
+          )}
+        </MoviesList>
+      </MoviesWrapper>
     </>
   );
 };
