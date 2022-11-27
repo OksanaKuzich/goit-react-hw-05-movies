@@ -56,8 +56,12 @@ const MovieDetails = () => {
                 </GenresList>
               </div>
               <div>
-                <Link to="cast">Cast</Link>
-                <Link to="reviews">Reviews</Link>
+                <Link to="cast" state={{ from: backLink }}>
+                  Cast
+                </Link>
+                <Link to="reviews" state={{ from: backLink }}>
+                  Reviews
+                </Link>
               </div>
             </MovieCardInfo>
           </MovieCard>
